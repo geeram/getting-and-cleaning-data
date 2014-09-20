@@ -10,7 +10,7 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 ## TASKS:
 Create one R script called **'run_analysis.R'** that does the following: 
-- Merges the *'training'* and the *'test'* sets to create one *'newdata'*.
+- Merges the *'train'* and the *'test'* sets to create one *'newdata'*.
 - Extracts only the measurements on the *'mean'* and *'standard deviation'* for each measurement. 
 - Uses descriptive activity *'labels'* to name the activities in the *'newdata'*.
 - Appropriately labels the data set with descriptive variable names. 
