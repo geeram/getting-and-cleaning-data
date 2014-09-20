@@ -1,48 +1,50 @@
-## COURSERA - GETTING AND CLEANING DATA - COURSE PROJECT, SEP 2014.
-## Create one R script called 'run_analysis.R' that does the following: 
-## Merges the 'train' and the 'test' sets to create one 'newdata'.
-## Extracts only the measurements on the 'mean' and 'standard deviation' for each measurement. 
-## Uses descriptive activity 'labels' to name the activities in the 'newdata'.
-## Appropriately labels the data set with descriptive variable names. 
-## Creates a second, independent tidy data set with the average of each variable for each
-## activity and each subject.
+## DEPENDANCE
+require(plyr)
 
-## Set the working directory. (Eg: setwd("~/Documents/Coursera/UCI HAR Dataset")
-## read and organize data
-testlabels <- read.table("test/y_test.txt", col.names="label")
-testsubjects <- read.table("test/subject_test.txt", col.names="subject")
-testdata <- read.table("test/X_test.txt")
-trainlabels <- read.table("train/y_train.txt", col.names="label")
-trainsubjects <- read.table("train/subject_train.txt", col.names="subject")
-traindata <- read.table("train/X_train.txt")
+## EXTRACT DATA FROM DATA SETS
+features <- read.table("features.txt", sep = "", colClasses = c("character"))
+activity.labels <- read.table("activity_labels.txt", sep = "", col.names = c("ActivityId", "Activity"))
+xtrain <- read.table("train/X_train.txt", sep = "")
+ytrain <- read.table("train/y_train.txt", sep = "")
+strain <- read.table("train/subject_train.txt", sep = "")
+xtest <- read.table("test/X_test.txt", sep = "")
+ytest <- read.table("test/y_test.txt", sep = "")
+stest <- read.table("test/subject_test.txt", sep = "")
 
-## code to merge data sets.
-newdata <- rbind(cbind(testsubjects, testlabels, testdata),
-              cbind(trainsubjects, trainlabels, traindata))
+## MERGE TRAIN AND TEST DATA SETS
+train.sensor.data <- cbind(cbind(xtrain, strain), ytrain)
+test.sensor.data <- cbind(cbind(xtest, stest), ytest)
+sensor.data <- rbind(train.sensor.data, test.sensor.data)
 
-## read the features.txt
-newfeatures <- read.table("features.txt", strip.white=TRUE, stringsAsFactors=FALSE)
+## COLUMN LABELS
+sensor.labels <- rbind(rbind(features, c(562, "Subject")), c(563, "ActivityId"))[,2]
+names(sensor.data) <- sensor.labels
 
-## extract mean and standard deviation. Increment by 2 because data has subjects and labels in ## the beginning.
-newfeatures.meansd <- newfeatures[grep("mean\\(\\)|std\\(\\)", newfeatures$V2), ]
-newdata.meansd <- newdata[, c(1, 2, newfeatures.meansd$V1+2)]
+## EXTRACT ONLY THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT
+sensor.data.mean.std <- sensor.data[,grepl("mean|std|Subject|ActivityId", names(sensor.data))]
 
-## read activity_labels.txt and replace with label names
-labels <- read.table("activity_labels.txt", stringsAsFactors=FALSE)
-newdata.meansd$label <- labels[newdata.meansd$label, 2]
+## ASSIGN DESCRIPTIVE ACTIVITY NAMES
+sensor.data.mean.std <- join(sensor.data.mean.std, activity.labels, by = "ActivityId", match = "first")
+sensor.data.mean.std <- sensor.data.mean.std[,-1]
 
-## List column names and feature names, remove non-alphabetic character.
-newcolnames <- c("subject", "label", newfeatures.meansd$V2)
-newcolnames <- gsub("[^[:alpha:]]", "", newcolnames)
-colnames(newdata.meansd) <- newcolnames
+## REMOVE PARENTHESES
+names(sensor.data.mean.std) <- gsub('\\(|\\)',"",names(sensor.data.mean.std), perl = TRUE)
 
-## get the means for subject and label
-newdata2 <- aggregate(newdata.meansd[, 3:ncol(newdata.meansd)],
-                       by=list(subject = newdata.meansd$subject, 
-                               label = newdata.meansd$label),
-                       mean)
+## MAKE SYNTACTICALLY VALID NAMES
+names(sensor.data.mean.std) <- make.names(names(sensor.data.mean.std))
 
-## write to tidydata.txt
-write.table(format(newdata2, scientific=T), "tidydata.txt",
-            row.names=F, col.names=F, quote=2)
+## TIDY UP THE COLUMN NAMES
+names(sensor.data.mean.std) <- gsub('Acc',"Acceleration",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('GyroJerk',"AngularAcceleration",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('Gyro',"AngularSpeed",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('Mag',"Magnitude",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('^t',"TimeDomain.",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('^f',"FrequencyDomain.",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('\\.mean',".Mean",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('\\.std',".StandardDeviation",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('Freq\\.',"Frequency.",names(sensor.data.mean.std))
+names(sensor.data.mean.std) <- gsub('Freq$',"Frequency",names(sensor.data.mean.std))
 
+## CREATE AN INDEPENDANT TIDY DATA SET AND SAVE AS "tidydata.txt"
+sensor.tidydata = ddply(sensor.data.mean.std, c("Subject","Activity"), numcolwise(mean))
+write.table(sensor.tidydata, file = "tidydata.txt")

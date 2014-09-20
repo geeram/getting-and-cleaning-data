@@ -10,11 +10,11 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 ## TASKS:
 Create one R script called **'run_analysis.R'** that does the following: 
-- Merges the *'train'* and the *'test'* sets to create one *'newdata'*.
+- Merges the *'train'* and the *'test'* sets to create one *'sensor.data'*.
 - Extracts only the measurements on the *'mean'* and *'standard deviation'* for each measurement. 
-- Uses descriptive activity *'labels'* to name the activities in the *'newdata'*.
+- Uses descriptive activity *'labels'* to name the activities in the *'sensor.data.mean.std'*.
 - Appropriately labels the data set with descriptive variable names. 
-- Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+- Creates a second, independent *sensor.tidydata* set with the average of each variable for each activity and each subject.
 
 ## STEPS:
 1. Download the data set from the above URL and unzip the contents.
@@ -29,5 +29,5 @@ Create one R script called **'run_analysis.R'** that does the following:
 * A new file named **tidydata.txt** will be generated when yo run the code
 
 ## DEPENDANCE:
-The code runs with the *standard libraries* of R without needing additional packages.
+Running the code (**run_analysis.R**) requires the **plyr** library.
 

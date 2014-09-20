@@ -63,18 +63,16 @@ The data set is known as **UCI HAR data set** and consists of the folowing direc
 
 ## Transformation
 
-Train and test data sets have been merged into a single data set. 
+Train and test data sets have been merged into a single sensor data set. 
 Extracted the mean and standard deviation for each measurement.
 Used descriptive activity names to the activities in the data set.
-Appropriately labeled.
-Created an independant tidy data set from the above data set.
-The non alphabetic characters in column names have been removed.
+Appropriately labeled. Created an independant tidy data set from the above data set.
 
 ## Tidy data Output
 
-All the values are means, aggregated over 30 subjects and 6 activities, hence the resulting dataset is 180 rows by 68 columns. The saved file will be named **"tidydata.txt"**
+The saved file will be named **"tidydata.txt"**
 
 ## Notes
 
-The codes in the file **'run_analysis.R'** executes with the standard libraries in R. No additional libraries are needed.
+The codes in the file **'run_analysis.R'** requires **plyr** library.
 
