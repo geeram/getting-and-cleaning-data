@@ -18,41 +18,41 @@ The experiments have been carried out with a group of 30 volunteers within an ag
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
 
 ## UCI HAR Data set:
-The data set is known as UCI HAR data set and consists of the folowing directories and files:
+The data set is known as **UCI HAR data set** and consists of the folowing directories and files:
 ## Directories
-UCI HAR Dataset/test/
-UCI HAR Dataset/test/Inertial Signals 
-UCI HAR Dataset/train/
-UCI HAR Dataset/train/Inertial Signals
+* UCI HAR Dataset/test/
+* UCI HAR Dataset/test/Inertial Signals 
+* UCI HAR Dataset/train/
+* UCI HAR Dataset/train/Inertial Signals
 ## Files 
-UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt
-UCI HAR Dataset/test/Inertial Signals/body_acc_y_test.txt
-UCI HAR Dataset/test/Inertial Signals/body_acc_z_test.txt
-UCI HAR Dataset/test/Inertial Signals/body_gyro_x_test.txt
-UCI HAR Dataset/test/Inertial Signals/body_gyro_y_test.txt
-UCI HAR Dataset/test/Inertial Signals/body_gyro_z_test.txt
-UCI HAR Dataset/test/Inertial Signals/total_acc_x_test.txt
-UCI HAR Dataset/test/Inertial Signals/total_acc_y_test.txt
-UCI HAR Dataset/test/Inertial Signals/total_acc_z_test.txt
-UCI HAR Dataset/test/subject_test.txt
-UCI HAR Dataset/test/X_test.txt
-UCI HAR Dataset/test/y_test
-UCI HAR Dataset/train/Inertial Signals/body_acc_x_test.txt
-UCI HAR Dataset/train/Inertial Signals/body_acc_y_test.txt
-UCI HAR Dataset/train/Inertial Signals/body_acc_z_test.txt
-UCI HAR Dataset/train/Inertial Signals/body_gyro_x_test.txt
-UCI HAR Dataset/train/Inertial Signals/body_gyro_y_test.txt
-UCI HAR Dataset/train/Inertial Signals/body_gyro_z_test.txt
-UCI HAR Dataset/train/Inertial Signals/total_acc_x_test.txt
-UCI HAR Dataset/train/Inertial Signals/total_acc_y_test.txt
-UCI HAR Dataset/train/Inertial Signals/total_acc_z_test.txt
-UCI HAR Dataset/train/subject_test.txt
-UCI HAR Dataset/train/X_test.txt
-UCI HAR Dataset/train/y_test
-UCI HAR Dataset/activity_labels.txt
-UCI HAR Dataset/features.txt
-UCI HAR Dataset/features_info.txt
-UCI HAR Dataset/README.txt
+* UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt
+* UCI HAR Dataset/test/Inertial Signals/body_acc_y_test.txt
+* UCI HAR Dataset/test/Inertial Signals/body_acc_z_test.txt
+* UCI HAR Dataset/test/Inertial Signals/body_gyro_x_test.txt
+* UCI HAR Dataset/test/Inertial Signals/body_gyro_y_test.txt
+* UCI HAR Dataset/test/Inertial Signals/body_gyro_z_test.txt
+* UCI HAR Dataset/test/Inertial Signals/total_acc_x_test.txt
+* UCI HAR Dataset/test/Inertial Signals/total_acc_y_test.txt
+* UCI HAR Dataset/test/Inertial Signals/total_acc_z_test.txt
+* UCI HAR Dataset/test/subject_test.txt
+* UCI HAR Dataset/test/X_test.txt
+* UCI HAR Dataset/test/y_test
+* UCI HAR Dataset/train/Inertial Signals/body_acc_x_test.txt
+* UCI HAR Dataset/train/Inertial Signals/body_acc_y_test.txt
+* UCI HAR Dataset/train/Inertial Signals/body_acc_z_test.txt
+* UCI HAR Dataset/train/Inertial Signals/body_gyro_x_test.txt
+* UCI HAR Dataset/train/Inertial Signals/body_gyro_y_test.txt
+* UCI HAR Dataset/train/Inertial Signals/body_gyro_z_test.txt
+* UCI HAR Dataset/train/Inertial Signals/total_acc_x_test.txt
+* UCI HAR Dataset/train/Inertial Signals/total_acc_y_test.txt
+* UCI HAR Dataset/train/Inertial Signals/total_acc_z_test.txt
+* UCI HAR Dataset/train/subject_test.txt
+* UCI HAR Dataset/train/X_test.txt
+* UCI HAR Dataset/train/y_test
+* UCI HAR Dataset/activity_labels.txt
+* UCI HAR Dataset/features.txt
+* UCI HAR Dataset/features_info.txt
+* UCI HAR Dataset/README.txt
 
 ## Transformation
 Train and test data sets have been merged into a single data set. 
@@ -63,8 +63,8 @@ Created an independant tidy data set from the above data set.
 The non alphabetic characters in column names have been removed.
 
 ## Tidy data Output
-All the values are means, aggregated over 30 subjects and 6 activities, hence the resulting dataset is 180 rows by 68 columns. The saved file will be named "tidydata.txt"
+All the values are means, aggregated over 30 subjects and 6 activities, hence the resulting dataset is 180 rows by 68 columns. The saved file will be named **"tidydata.txt"**
 
 ## Notes
-The codes in the file 'run_analysis.R' executes with the standard libraries in R. No additional libraries are needed.
+The codes in the file **'run_analysis.R'** executes with the standard libraries in R. No additional libraries are needed.
 
