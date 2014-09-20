@@ -42,7 +42,7 @@ newdata2 <- aggregate(newdata.meansd[, 3:ncol(newdata.meansd)],
                                label = newdata.meansd$label),
                        mean)
 
-## write to tidy2.txt
+## write to tidydata.txt
 write.table(format(newdata2, scientific=T), "tidydata.txt",
             row.names=F, col.names=F, quote=2)
 
